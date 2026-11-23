@@ -51,6 +51,14 @@ Pour une démonstration hébergée, garder ce principe : un petit relais côté 
 détient la clé. Il ne faut pas mettre la clé dans une variable `VITE_*`, qui serait
 incluse dans le bundle.
 
+### Déploiement sur Vercel
+
+Le relais de production est `api/relay.ts` ; `vercel.json` y réécrit `/api/v1/*`.
+Dans les variables d'environnement du projet Vercel, définir :
+
+- `AGRI_API_KEY` : la clé d'API en lecture ;
+- `AGRI_API_URL` : l'URL **publique** de la passerelle (pas `127.0.0.1`).
+
 ## Ce que la démonstration met en évidence
 
 - Chaque prix porte sa **période** et sa **fraîcheur** : rien n'est présenté comme « en
