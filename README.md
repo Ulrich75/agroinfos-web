@@ -10,8 +10,7 @@ passerelle. Il sert à montrer ce que l'API permet, pas à servir de produit fin
 | Vue d'ensemble | Volumes, état des sources, derniers prix moyens de 4 produits | `/products`, `/markets`, `/prices`, `/prices/latest`, `/data-sources/{code}/status` |
 | Prix | Derniers prix par marché (filtres produit, variété, département, type de prix), fraîcheur, remarques de comparabilité ; historique au clic | `/prices/latest`, `/prices/history`, `/admin-areas` |
 | Comparer les marchés | Carte des marchés ; un clic place le producteur ; comparaison des prix des marchés du rayon (distance, écart avec le marché le plus proche, fraîcheur) | `/markets`, `/comparisons/markets` |
-| Indicateurs | Indice de prix national (base 2021 = 100), variations mensuelle et annuelle, écart entre marchés, méthodologie | `/indicators`, `/indicators/methodologies` |
-| Sources | Gouvernance de chaque source : licence, diffusion, état, fraîcheur | `/data-sources`, `/data-sources/{code}/status` |
+| Sources | Gouvernance de chaque source diffusée : licence, diffusion, état, fraîcheur | `/data-sources`, `/data-sources/{code}/status` |
 
 L'application n'utilise que des requêtes `GET` : l'API est en lecture seule.
 

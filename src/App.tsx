@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import { Dashboard } from "./pages/Dashboard";
-import { IndicatorsPage } from "./pages/IndicatorsPage";
 import { MapPage } from "./pages/MapPage";
 import { PricesPage } from "./pages/PricesPage";
 import { SourcesPage } from "./pages/SourcesPage";
@@ -10,7 +9,6 @@ const TABS = [
   { id: "home", label: "Vue d'ensemble", page: Dashboard },
   { id: "prices", label: "Prix", page: PricesPage },
   { id: "map", label: "Comparer les marchés", page: MapPage },
-  { id: "indicators", label: "Indicateurs", page: IndicatorsPage },
   { id: "sources", label: "Sources", page: SourcesPage },
 ] as const;
 

@@ -145,28 +145,8 @@ export interface HistorySeries {
   points: { id: string; period: Period; price: number; quality_flags: string[] }[];
 }
 
-export interface Indicator {
-  id: string;
-  origin: "computed" | "official";
-  indicator_type: string;
-  name: string | null;
-  methodology: { id: string; version: string } | null;
-  variety: Ref | null;
-  scope: { level: string; market: Ref | null };
-  period: Period;
-  value: number;
-  value_unit: string;
-  details: Record<string, unknown>;
-  n_inputs: number;
-}
-
-export interface Methodology {
-  id: string;
-  name: string;
-  formula: string;
-  rules: string[];
-  parameters: Record<string, unknown>;
-}
+/** Sources dont l'API diffuse les prix : les autres ne sont pas affichées. */
+export const isPublished = (s: DataSource) => s.redistribution === "public";
 
 export interface DataSource {
   code: string;

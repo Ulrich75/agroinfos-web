@@ -1,10 +1,10 @@
-import { get, getAll, type DataSource, type SourceStatus } from "../api";
+import { get, getAll, isPublished, type DataSource, type SourceStatus } from "../api";
 import { Card, ErrorBox, Loading } from "../components/ui";
 import { HEALTH, amount } from "../format";
 import { useAsync } from "../hooks";
 
 async function load() {
-  const sources = await getAll<DataSource>("/data-sources");
+  const sources = (await getAll<DataSource>("/data-sources")).filter(isPublished);
   const statuses = await Promise.all(
     sources.map((s) => get<SourceStatus>(`/data-sources/${s.code}/status`).then((r) => r.data)),
   );
@@ -13,10 +13,6 @@ async function load() {
 
 const REDISTRIBUTION: Record<string, string> = {
   public: "Publique",
-  agreement: "Sous convention",
-  restricted: "Restreinte",
-  forbidden: "Interdite sans convention",
-  unknown: "Non confirmée (non diffusée)",
 };
 
 export function SourcesPage() {

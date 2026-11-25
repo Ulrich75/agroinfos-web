@@ -1,4 +1,4 @@
-import { get, getAll, type DataSource, type Price, type SourceStatus } from "../api";
+import { get, getAll, isPublished, type DataSource, type Price, type SourceStatus } from "../api";
 import { Card, Empty, ErrorBox, FreshnessBadge, Loading, Stat } from "../components/ui";
 import { HEALTH, amount, monthLabel } from "../format";
 import { useAsync } from "../hooks";
@@ -19,7 +19,7 @@ async function overview() {
   ]);
   const statuses = await Promise.all(
     sources
-      .filter((s) => s.automated)
+      .filter((s) => s.automated && isPublished(s))
       .map((s) => get<SourceStatus>(`/data-sources/${s.code}/status`).then((r) => r.data)),
   );
   return {
@@ -85,7 +85,7 @@ export function Dashboard() {
     <div className="page">
       <p className="lead">
         Démonstration de l'API d'information sur les marchés agricoles du Bénin : prix des
-        produits vivriers, comparaison des marchés et indicateurs, avec la source, la date et
+        produits vivriers, et comparaison des marchés, avec la source, la date et
         les limites de chaque donnée. Aucun prix n'est présenté comme « en temps réel ».
       </p>
       <ErrorBox error={state.error} />
